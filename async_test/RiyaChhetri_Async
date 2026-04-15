@@ -1,0 +1,92 @@
+//Trigger Creating
+/*1. Trigger-Based Initiation:
+Create a trigger on Opportunity that detects when the Stage changes to Closed Won. The trigger
+should not contain heavy logic and must delegate processing to an asynchronous mechanism.*/
+if(is.isAfter && isUpdated)){
+    ClassName.MethodName(Trigger.new,Trigger.oldMap);
+}
+public class OpportunityHandling{
+    public static void asyncHandling(List<Opportunity> oppList,Map<Id, Opportunity> oldMap){
+        Set<Id> wonOppIds=new Set<Id>();
+        for(Opportunity opp:oppList){
+            if(opp.StageName=='Closed WOn' && oldMap.get(opp.Id).StageName !='ClosedWon'){
+                wonOppIds.add(opp.Id)
+            }
+
+        }
+        if(!closedWonOppId.isEmpty())
+            AsynchOperation(closedWonId);
+    }
+    //here Future method will be implemented
+    @Future
+    public class ContactService {
+    @Future
+    public static void updateRelatedContacts(Set<Id> oppIds) {
+        List<Contact> conToUpdate = [select Id,Description from Contact Where Id in(seelctt contact from OpportunityContactRole where opportunityid in:oppId)];
+            
+        
+        for (Contact con : conToUpdate) {
+            con.Description = 'Linked to Opportunity ';
+        }
+        update contactsToUpdate;
+        System.enqueueJob(new OpportunityProcessing(wonOppIds));//sending this to next process
+    }
+}
+// This is where the 'new' keyword calls the Constructor of your Queueable class
+
+   public class  OpportunityProcessing implements Queueable {
+    Set<Id> oppIds;//taking the oppid which we have taken from 
+
+    
+   
+    public void execute(QueueableContext) {
+        List<Opportunity> opps = [SELECT Id, Amount, Description FROM Opportunity WHERE Id IN :oppIds];
+        for (Opportunity opp : opps) {
+            if(opp.Amount > 50000){
+                opp.Description = 'High Value Deal';
+
+            }else{
+                  opp.Description =  'Standard Deal';
+            }
+            
+        update opps;
+
+       
+        Database.executeBatch(new taskProcessing (oppIds), 200);//making the instance of the batch class and passing the oppid
+    }
+}
+//here batch is Implemented
+
+   public class taskProcessing implements Database.Batchable<SObject> {
+    Set<Id> oppIds;
+ 
+
+    public Database.QueryLocator start(Database.BatchableContext bc) {
+        return Database.getQueryLocator([SELECT Id, Statusfrom  Task where  WhatId IN :oppIds AND Status != 'Completed']);
+    }
+
+    public void execute(Database.BatchableContext bc, List<Task> ScopeOFTask) {
+        for (Task t : ScopeOFTask) {
+            t.Status = 'Completed';
+        }
+        update scope;
+    }
+
+    public void finish(Database.BatchableContext bc) {
+        system.debug('it is finished');
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
