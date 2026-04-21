@@ -1,0 +1,15 @@
+<apex:component access="global" controller="SRV_CaseCommentNotificationController" >
+
+    <apex:attribute name="ContactName" type="String" description="Contact Name of the Case"/>
+    <apex:attribute name="Subsidiary" type="String" description="subsidary of cosnultant" assignTo="{!subsiadryContact}" />
+    <apex:attribute name="CaseNumber" type="String" description="Case Number of the Case" />
+    <apex:attribute name="CaseId" type="String" description="Salesforce Id of the Case" assignTo="{!caseIdD}"/>
+    
+Dear {!ContactName},
+<br/>
+{!$Label.SRV_NewCaseComment} {!CaseNumber}
+<br/>
+<apex:outputlink value="{!loadData}">{!$Label.SRV_CaseCommentHyperlink}</apex:outputlink>
+
+
+</apex:component>
