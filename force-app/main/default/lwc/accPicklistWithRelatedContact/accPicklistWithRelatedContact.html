@@ -1,0 +1,13 @@
+<template>
+    <lightning-card tittle="Contact reclated to Account throgh Combobox">
+        <lightning-combobox label="Account" options={options} placeholder="select Account" value={value} onchange={handleChange}>
+        
+
+        </lightning-combobox>
+       <template if:true={hasContacts}>
+            <div style="height:300px">
+              <lightning-datatable key-field="id" data={contacts} columns={columns}></lightning-datatable></div>
+        </template>
+      
+    </lightning-card>
+</template>

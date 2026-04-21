@@ -1,0 +1,8 @@
+<template>
+    <lightning-card title="Parent Of Child" icone-name='standard:account'>
+        <p>count {counter}</p>
+    </lightning-card>
+
+    <!-- Use the child bundle's folder name kebab-cased -->
+    <c-childcomponent onaddval={handleadd} onsubtract={handleSubtract} onmulti={handleMulti}></c-childcomponent>
+</template>

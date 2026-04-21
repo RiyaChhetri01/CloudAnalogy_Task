@@ -1,0 +1,11 @@
+/* This targets every cell in the row that LWC marked as 'selected' */
+.highlight-row-style lightning-datatable .slds-table tr.slds-is-selected > td,
+.highlight-row-style lightning-datatable .slds-table tr.slds-is-selected > th {
+    background-color: #faffbd !important; /* Yellow background for the whole row */
+    background-image: none !important;    /* Removes standard blue gradients */
+}
+
+/* Removes the blue selection bar on the far left of the row */
+.highlight-row-style lightning-datatable .slds-table tr.slds-is-selected:before {
+    display: none;
+}
