@@ -1,7 +1,12 @@
 import { LightningElement,track } from 'lwc';
 import getAccountforCombobox from '@salesforce/apex/handlingClassMaing.getAccountforCombobox';
+<<<<<<< HEAD
 import getCon from '@salesforce/apex/HandlerForPdfMaker.getAccountFullData';
 import AccOpp from '@salesforce/apex/HandlerForPdfMaker.getAccountFullData';
+=======
+import getCon from '@salesforce/apex/handlingClassMaing.getCon';
+import AccOpp from '@salesforce/apex/handlingClassMaing.AccOpp';
+>>>>>>> 6972eb78d6eba22a5bfc69ab4e862aa85c1e1971
 
 const col1=[{label:'AccountId',fieldName:'AccountId'},
     {label:'FirstName',fieldName:'FirstName'},
@@ -10,7 +15,11 @@ const col1=[{label:'AccountId',fieldName:'AccountId'},
 ]
 const col2=[{label:'AccountId',fieldName:'AccountId'},
     {label:'Opportunity Name',fieldName:'Name'},
+<<<<<<< HEAD
     {label:'StageName',fieldName:'StageName'}
+=======
+     {label:'StageName',fieldName:'StageName'}
+>>>>>>> 6972eb78d6eba22a5bfc69ab4e862aa85c1e1971
 ]
 export default class ShowAccRelatedConAndOpp extends LightningElement {
     @track columns1=col1;

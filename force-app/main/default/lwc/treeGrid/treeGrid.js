@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { LightningElement, track, api } from 'lwc';
 import getCases from '@salesforce/apex/GettingCaseHandler.getCaseData';
 import { NavigationMixin } from 'lightning/navigation';
@@ -57,3 +58,8 @@ export default class LwcGridForCases extends NavigationMixin(LightningElement){
     }
     
 }
+=======
+import { LightningElement } from 'lwc';
+
+export default class TreeGrid extends LightningElement {}
+>>>>>>> 6972eb78d6eba22a5bfc69ab4e862aa85c1e1971

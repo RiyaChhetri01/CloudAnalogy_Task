@@ -1,0 +1,23 @@
+<template>
+    <lightning-button label="Toggle Filter" onclick={handleClickToggle} variant="brand" class="slds-m-around_medium"></lightning-button>
+
+    <div class="slds-grid">
+        <template if:true={showFilters}>
+            <div class="slds-col slds-size_3-of-12">
+                <c-filter-created onfilterselection={handleFilterChange}></c-filter-created>
+            </div>
+        </template>
+
+        <div class="slds-col slds-size_9-of-12">
+            <lightning-card title="Opportunity Datatable">
+                <c-filter-show-data display-data={paginatedData}></c-filter-show-data>
+                
+                <div class="slds-align_absolute-center slds-m-top_medium">
+                    <lightning-button label="Previous" onclick={handlePrevious} disabled={isPreviousDisabled}></lightning-button>
+                    <span class="slds-m-horizontal_medium">Page {currentPage} of {totalPages}</span>
+                    <lightning-button label="Next" onclick={handleNext} disabled={isNextDisabled}></lightning-button>
+                </div>
+            </lightning-card>
+        </div>
+    </div>
+</template>

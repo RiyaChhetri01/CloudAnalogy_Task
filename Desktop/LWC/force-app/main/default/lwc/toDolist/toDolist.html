@@ -1,0 +1,33 @@
+<template>
+    <lightning-card title="My Todo List" icon-name="custom:custom62">
+        <div class="slds-var-m-around_medium">
+            <lightning-input 
+                label="New Task" 
+                value={toDoVal} 
+                onchange={getVal}>
+            </lightning-input>
+
+            <lightning-button 
+                label="Add to List" 
+                variant="brand" 
+                onclick={addVal} 
+                class="slds-var-m-top_small">
+            </lightning-button>
+             <lightning-button 
+                label="Delete All" 
+                data-index={index}
+                variant="destructive" 
+                onclick={delVal} 
+                class="slds-var-m-top_small">
+            </lightning-button>
+
+            <ul class="slds-var-m-top_medium">
+                <template for:each={yourItems} for:item="item" for:index="index">
+                    <li key={item} class="slds-box slds-box_x-small slds-var-m-bottom_x-small">
+                        {item}
+                    </li>
+                </template>
+            </ul>
+        </div>
+    </lightning-card>
+</template>

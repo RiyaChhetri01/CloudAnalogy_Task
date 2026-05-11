@@ -1,0 +1,12 @@
+<template>
+    <lightning-card title="Opportunity Cards">
+        <div>
+            <template for:each={opportunities} for:item="opp">
+                <div key={opp.Id}>
+                    <span>{opp.rank}</span> 
+                    <p>Amount: <b>${opp.Amount}</b></p>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

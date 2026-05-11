@@ -66,6 +66,7 @@ public class HandlerforLWc {
     }
 
     public static void calculateMinMax(Set<Id> accountIds) {
+<<<<<<< HEAD
         List<Opportunity> oppList=[SELECT AccountId,Amount From Opportunity 
         Where AccountId IN:accountIds and Amount !=null];
 
@@ -105,6 +106,21 @@ public class HandlerforLWc {
 
 
       
+=======
+
+        List<Account> accountsToUpdate = new List<Account>();
+
+        AggregateResult[] results = [
+            SELECT AccountId, MIN(Amount) minAmount, MAX(Amount) maxAmount FROM Opportunity WHERE AccountId IN :accountIds GROUP BY AccountId ];
+
+        for (AggregateResult ar : results) {
+            accountsToUpdate.add(new Account( Id = (Id) ar.get('AccountId'), Min_Amount__c = (Decimal) ar.get('minAmount'),Max_Amount__c = (Decimal) ar.get('maxAmount') ));
+        }
+
+        if (!accountsToUpdate.isEmpty()) {
+            update accountsToUpdate;
+        }
+>>>>>>> 6972eb78d6eba22a5bfc69ab4e862aa85c1e1971
     
 }
 }

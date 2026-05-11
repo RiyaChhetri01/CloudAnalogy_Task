@@ -119,10 +119,17 @@ export default class FilterCreated extends LightningElement {
             return;
         }
 
+<<<<<<< HEAD
         
         this.appliedFilters = [...validFilters];
 
         
+=======
+        //HERE  STORING FOR UI (NEW)
+        this.appliedFilters = [...validFilters];
+
+        // I AM  SENDING TO PARENT (EXISTING)
+>>>>>>> 6972eb78d6eba22a5bfc69ab4e862aa85c1e1971
         this.dispatchEvent(new CustomEvent('filterselection', {
             detail: { filters: validFilters }
         }));
@@ -136,7 +143,11 @@ export default class FilterCreated extends LightningElement {
         this.appliedFilters.splice(index, 1);
         this.appliedFilters = [...this.appliedFilters];
 
+<<<<<<< HEAD
         
+=======
+        // keeping UI in sync
+>>>>>>> 6972eb78d6eba22a5bfc69ab4e862aa85c1e1971
         this.filterRows = [...this.appliedFilters];
 
         // update parent

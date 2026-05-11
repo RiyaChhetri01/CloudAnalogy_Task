@@ -1,0 +1,15 @@
+<template>
+    <lightning-card>
+        <lightning-input label="enter your name" value={firstname}  onchange={firstName}></lightning-input>
+        <lightning-input label="enter you lastname " value={lastname} onchange={lastName}></lightning-input>
+        <lightning-input label="enter you email " value={UserEmail} onchange={email}></lightning-input>
+        <lightning-input label="enter you mobilenumber " value={Mobile} onchange={mobileNumber}></lightning-input>
+        <div>
+            <lightning-button type="submit" onclick={saveData}></lightning-button>
+        </div>
+        <p>Your Details: {firstname}{lastname}{UserEmail}{Mobile}</p>
+
+
+        <lightning-input></lightning-input>
+    </lightning-card>
+</template>

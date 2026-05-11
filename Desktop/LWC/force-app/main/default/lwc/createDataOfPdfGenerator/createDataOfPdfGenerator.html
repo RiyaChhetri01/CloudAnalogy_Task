@@ -1,0 +1,36 @@
+<template>
+    <div class="slds-p-around_medium">
+        
+        <div class="slds-text-align_center slds-m-bottom_large">
+            <lightning-icon icon-name="standard:account" size="large"></lightning-icon>
+            <h1 class="slds-text-heading_medium">Account Preview Report</h1>
+        </div>
+
+        <div class="slds-m-bottom_large">
+            <p><strong>Account Name:</strong> {accountData.Name}</p>
+            <p><strong>Industry:</strong> {accountData.Industry}</p>
+            <p><strong>Phone:</strong> {accountData.Phone}</p>
+        </div>
+
+        <div class="slds-m-bottom_medium">
+            <h2 class="slds-text-title_caps slds-m-bottom_xx-small">Related Contacts</h2>
+            <lightning-datatable
+                key-field="Id"
+                data={contactData}
+                columns={contactColumns}
+                hide-checkbox-column>
+            </lightning-datatable>
+        </div>
+
+        <div>
+            <h2 class="slds-text-title_caps slds-m-bottom_xx-small">Related Opportunities</h2>
+            <lightning-datatable
+                key-field="Id"
+                data={opportunityData}
+                columns={oppColumns}
+                hide-checkbox-column>
+            </lightning-datatable>
+        </div>
+
+    </div>
+</template>
