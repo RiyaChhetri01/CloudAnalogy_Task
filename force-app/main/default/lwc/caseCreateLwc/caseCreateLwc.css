@@ -1,0 +1,52 @@
+.mobile-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 10px;
+}
+
+.case-card {
+    background: white;
+    padding: 12px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status-badge {
+    background: #f3f3f3;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+}
+
+.meta {
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+.btn-group {
+    margin-top: 10px;
+}
+
+.full-btn {
+    width: 100%;
+    padding: 8px;
+    border-radius: 6px;
+    border: none;
+}
+
+.escalate-btn {
+    background-color: #c23934;
+    color: white;
+}
+.escalate-btn:disabled {
+    background-color: #d3d3d3 !important;
+    color: #888;
+    cursor: not-allowed;
+}

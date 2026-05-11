@@ -1,0 +1,13 @@
+<template>
+    <lightning-card>
+        <lightning-input label="enter the 1  number" value={num1} onchange={handleNum1}></lightning-input>
+        <lightning-input label="enter the  number" value={num2} onchange={handleNum2}></lightning-input>
+        <div class="slds-var-m-top_medium">
+        <lightning-button type="submit" onclick={addValue}>Add</lightning-button>
+        <lightning-button type="submit" onclick={subtractVal}>Subtract</lightning-button>
+        <lightning-button type="submit" onclick={multiplyVal}>Multiply</lightning-button>
+       </div>
+         <p><strong>Result</strong>{result}</p>
+
+    </lightning-card>
+</template>

@@ -1,0 +1,23 @@
+<template>
+    <div class="container">
+        <h2>Create Account</h2>
+        <lightning-input label="Name" onchange={handleName}></lightning-input>
+        <lightning-input label="Email" type="email" onchange={handleEmail}></lightning-input>
+        <lightning-input type="password" label="Password" onchange={handlePassword}></lightning-input>
+
+        <lightning-button label="Generate OTP" onclick={handleSendOtp} class="slds-m-top_medium"></lightning-button>
+
+        <template if:true={showOtp}>
+            <div class="otp-section slds-box slds-m-top_medium">
+              
+                <p>Your OTP Code is: <strong>{displayedOtp}</strong></p>
+                
+                <lightning-input label="Enter OTP" onchange={handleOtp}></lightning-input>
+                <lightning-button variant="brand" label="Verify & Register" onclick={register}></lightning-button>
+            </div>
+            <p>OTP expires in: {timeLeft} seconds</p>
+
+        </template>
+        
+    </div>
+</template>

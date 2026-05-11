@@ -1,0 +1,15 @@
+<template>
+    <div class="slds-page-header slds-theme_default slds-border_bottom">
+        <div class="slds-grid slds-grid_vertical-align-center">
+            <div class="slds-col">
+                <span class="slds-text-heading_small">Opportunity</span>
+            </div>
+            
+            <div class="slds-col slds-no-flex">
+                <template lwc:if={activeFilterName}>
+                    <lightning-pill label={activeFilterName} class="slds-m-left_small"></lightning-pill>
+                </template>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,73 @@
+<template>
+    <div class="report-container">
+        
+        <div class="slds-m-bottom_large">
+            <img src="/resource/logo" alt="Cloud Analogy Logo" class="company-logo" />
+        </div>
+
+        <div class="section-wrapper">
+            <div class="blue-header">ACCOUNT INFORMATION</div>
+            <table class="report-table">
+                <tr>
+                    <td class="label-gray">Account Name</td>
+                    <td class="value-white" colspan="3">{accountData.Name}</td>
+                </tr>
+                <tr>
+                    <td class="label-gray">Website</td>
+                    <td class="value-white" colspan="3">{accountData.Website}</td>
+                </tr>
+                <tr>
+                    <td class="label-gray">Phone</td>
+                    <td class="value-white">{(accountData.Phone)}</td>
+                    <td class="label-gray">Industry</td>
+                    <td class="value-white">{accountData.Industry}</td>
+                </tr>
+                <tr>
+                    <td class="label-gray">Owner</td>
+                    <td class="value-white">System Administrator</td>
+                    <td class="label-gray">Prepared By</td>
+                    <td class="value-white">Riya Chhetri</td>
+                </tr>
+            </table>
+        </div>
+
+        <template for:each={contactData} for:item="con" for:index="index">
+            <div key={con.Id} class="section-wrapper slds-m-top_large">
+                <div class="blue-header">CONTACT {index} DETAILS</div>
+                <table class="report-table">
+                    <tr>
+                        <td class="label-gray">First Name</td>
+                        <td class="value-white">{con.FirstName}</td>
+                        <td class="label-gray">Last Name</td>
+                        <td class="value-white">{con.LastName}</td>
+                    </tr>
+                    <tr>
+                        <td class="label-gray">Email</td>
+                        <td class="value-white" colspan="3">{con.Email}</td>
+                    </tr>
+                </table>
+            </div>
+        </template>
+
+        <template for:each={opportunityData} for:item="opp" for:index="index">
+            <div key={opp.Id} class="section-wrapper slds-m-top_large">
+                <div class="blue-header">OPPORTUNITY {index} DETAILS</div>
+                <table class="report-table">
+                    <tr>
+                        <td class="label-gray">Opportunity Name</td>
+                        <td class="value-white">{opp.Name}</td>
+                        <td class="label-gray">Stage</td>
+                        <td class="value-white">{opp.StageName}</td>
+                    </tr>
+                    <tr>
+                        <td class="label-gray">Amount</td>
+                        <td class="value-white">${opp.Amount}</td>
+                        <td class="label-gray">Close Date</td>
+                        <td class="value-white">{opp.CloseDate}</td>
+                    </tr>
+                </table>
+            </div>
+        </template>
+
+    </div>
+</template>

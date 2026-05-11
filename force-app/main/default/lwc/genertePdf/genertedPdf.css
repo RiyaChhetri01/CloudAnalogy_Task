@@ -1,0 +1,27 @@
+
+.main-preview-area {
+    height: 70vh;
+    overflow-y: auto;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Header */
+.slds-modal__header {
+    background: #323639;
+    color: white;
+}
+
+/* Footer */
+.slds-modal__footer {
+    background: #323639;
+}
+
+/* Modal size */
+.slds-modal__container {
+    width: 95% !important;
+    max-width: 95% !important;
+    height: 90vh;
+}

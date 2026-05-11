@@ -1,0 +1,21 @@
+public class PrimeOrNot {
+    public static Boolean printPrime(Integer num){
+        if(num<=1){
+            return false;
+        }
+        else{
+            for(Integer i=2;i<=Math.sqrt(num);i++){
+                if(Math.mod(num,i)==0){
+                    return false;
+                  
+                }
+               		 
+            }
+                }
+        return true;
+        
+        
+        
+    }
+
+}

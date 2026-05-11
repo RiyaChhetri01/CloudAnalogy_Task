@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="Case Tree">
+
+        <lightning-tree-grid
+            columns={columns}
+            data={data}
+            key-field="Id"
+            ontoggle={handleToggle}
+            hide-checkbox-column>
+        </lightning-tree-grid>
+
+    </lightning-card>
+</template>

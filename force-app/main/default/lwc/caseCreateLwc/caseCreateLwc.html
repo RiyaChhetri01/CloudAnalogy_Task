@@ -1,0 +1,98 @@
+<template>
+
+    <lightning-card title="Cases">
+
+        <!-- LOADING -->
+        <template if:true={isLoading}>
+            <div class="slds-align_absolute-center slds-p-around_large">
+                <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+            </div>
+        </template>
+
+        <!-- DATA -->
+        <template if:false={isLoading}>
+
+            <template if:true={hasCases}>
+
+                <!-- DESKTOP -->
+                <template if:false={isMobile}>
+                    <lightning-datatable
+                        key-field="Id"
+                        data={cases}
+                        columns={columns}
+                        onrowaction={handleRowAction}
+                        hide-checkbox-column>
+                    </lightning-datatable>
+                </template>
+
+                <!-- MOBILE -->
+                <template if:true={isMobile}>
+                    <div class="mobile-list">
+
+                        <template for:each={cases} for:item="item">
+                            <div class="case-card" key={item.Id}>
+
+                                <div class="top-row">
+                                    <strong>{item.CaseNumber}</strong>
+                                    <span class="status-badge">{item.Status}</span>
+                                </div>
+
+                                <div class="meta">
+                                    <p><b>Subject:</b> {item.Subject}</p>
+                                    <p><b>Priority:</b> {item.Priority}</p>
+                                    <p>
+                                        <b>Date:</b>
+                                        <lightning-formatted-date-time value={item.CreatedDate}>
+                                        </lightning-formatted-date-time>
+                                    </p>
+                                </div>
+
+                                <div class="btn-group">
+                                        <lightning-button
+                                           label="Escalate"
+                                         variant="destructive"
+                                          data-id={item.Id}
+                                          onclick={handleEscalateMobile}
+                                        disabled={item.disableEscalate}
+                                        class="full-btn">
+                                         </lightning-button>
+                                </div>
+
+                            </div>
+                        </template>
+
+                    </div>
+                </template>
+
+                <!-- PAGINATION -->
+                <div class="slds-m-top_medium slds-text-align_center">
+
+                    <lightning-button
+                        label="Previous"
+                        onclick={handlePrev}
+                        disabled={disablePrev}>
+                    </lightning-button>
+
+                    <span class="slds-m-horizontal_medium">
+                        Page {currentPage} of {totalPages}
+                    </span>
+
+                    <lightning-button
+                        label="Next"
+                        onclick={handleNext}
+                        disabled={disableNext}>
+                    </lightning-button>
+
+                </div>
+
+            </template>
+
+            <template if:false={hasCases}>
+                <p class="slds-p-around_medium">No Cases Found</p>
+            </template>
+
+        </template>
+
+    </lightning-card>
+
+</template>

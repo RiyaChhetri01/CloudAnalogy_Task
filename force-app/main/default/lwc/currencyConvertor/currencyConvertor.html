@@ -1,0 +1,41 @@
+<template>
+    <lightning-card title="Currency Rates">
+
+        <!-- Search -->
+        <lightning-input
+            type="search"
+            label="Search Currency"
+            placeholder="Search INR, USD..."
+            value={searchKey}
+            onchange={handleSearch}>
+        </lightning-input>
+
+        <br/>
+
+        <!-- Datatable -->
+        <lightning-datatable
+            key-field="currency"
+            data={paginatedRows}
+            columns={columns}
+            hide-checkbox-column>
+        </lightning-datatable>
+
+        <br/>
+
+       
+        <div class="slds-align_absolute-center">
+
+            <lightning-button label="Previous" onclick={handlePrevious}  disabled={disablePrevious}>
+            </lightning-button>
+
+            <span class="slds-m-horizontal_medium">
+                Page {currentPage} of {totalPages}
+            </span>
+
+            <lightning-button label="Next" onclick={handleNext} disabled={disableNext}>
+            </lightning-button>
+
+        </div>
+
+    </lightning-card>
+</template>

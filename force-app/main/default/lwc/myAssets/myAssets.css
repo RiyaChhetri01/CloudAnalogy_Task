@@ -1,0 +1,124 @@
+/* ---------- MOBILE LIST ---------- */
+.mobile-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 10px; /* FIX: spacing from edges */
+}
+
+/* ---------- CARD ---------- */
+.asset-card {
+    background: white;
+    padding: 14px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* TOUCH EFFECT (mobile feel) */
+.asset-card:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* ---------- HEADER ROW ---------- */
+.top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ---------- META TEXT ---------- */
+.meta {
+    margin-top: 6px;
+    font-size: 14px;
+    color: #555;
+}
+
+/* ---------- STATUS BADGES ---------- */
+.status-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* STATUS COLORS */
+.status-active {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.status-expired {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.status-nowarranty {
+    background: #e5e7eb;
+    color: #374151;
+}
+
+/* ---------- BUTTON GROUP ---------- */
+.btn-group {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column; /* FIX: vertical buttons */
+    gap: 8px;
+}
+
+/* ---------- FULL WIDTH BUTTON ---------- */
+.full-btn {
+    width: 100%;
+}
+
+/* Ensure lightning-button expands */
+.full-btn lightning-button {
+    width: 100%;
+}
+
+/* ---------- SUCCESS MODAL ---------- */
+.success-modal {
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+/* Header */
+.success-header {
+    text-align: center;
+    background: #f4fdf7;
+    border-bottom: none;
+}
+
+/* Body */
+.success-body {
+    text-align: center;
+}
+
+.case-number {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.case-number strong {
+    color: #02090e;
+    font-size: 20px;
+}
+
+.case-id {
+    font-size: 12px;
+    color: #0d0404;
+    margin-bottom: 12px;
+}
+
+.success-msg {
+    color: #444;
+    font-size: 14px;
+}
+
+/* Footer */
+.success-footer {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}

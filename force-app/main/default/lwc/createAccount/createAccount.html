@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="Account Creation">
+        <div style="height:500px">
+            <lightning-input label="Name" placeholder="enter you name" name="name" onchange={handleChange}></lightning-input>
+            <lightning-input label="Phone" placeholder="enter you Phone" name="Phone" onchange={handleChange}></lightning-input>
+            <lightning-input label="Industry" placeholder="enter you Industry" name="Industry" onchange={handleChange}></lightning-input>
+            <lightning-input label="Website" placeholder="enter you Website" name="Website" onchange={handleChange}></lightning-input>
+            <lightning-input label="Type" placeholder="enter you Type" name="Type" onchange={handleChange}></lightning-input>
+            <lightning-button label="Create Account" variant="brand" onclick={handleClick}></lightning-button>
+
+        </div>
+    </lightning-card>
+</template>

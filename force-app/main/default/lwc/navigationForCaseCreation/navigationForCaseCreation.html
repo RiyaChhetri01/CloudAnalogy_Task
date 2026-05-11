@@ -1,0 +1,32 @@
+<template>
+    <nav class="navbar">
+
+        <div class="logo-section">
+            <span class="brand">Customer Portal</span>
+        </div>
+
+        <!-- HAMBURGER -->
+        <div class="hamburger" onclick={toggleMenu}>
+            ☰
+        </div>
+
+        <!-- MENU -->
+        <template if:true={isMenuOpen}>
+            <div class="menu mobile-menu">
+                <a onclick={goHome}>Home</a>
+                <a onclick={goAssets}>My Assets</a>
+                <a onclick={goCases}>My Cases</a>
+                <a onclick={goFaq}>FAQ</a>
+            </div>
+        </template>
+
+        <!-- DESKTOP MENU -->
+        <div class="menu desktop-menu">
+            <a onclick={goHome}>Home</a>
+            <a onclick={goAssets}>My Assets</a>
+            <a onclick={goCases}>My Cases</a>
+            <a onclick={goFaq}>FAQ</a>
+        </div>
+
+    </nav>
+</template>

@@ -1,0 +1,35 @@
+<template>
+
+    <lightning-card title="Frequently Asked Questions" icon-name="standard:knowledge">
+
+        <div class="slds-p-around_medium">
+
+         
+            <template if:true={faqs}>
+                <lightning-accordion allow-multiple-sections-open>
+
+                    <template for:each={faqs} for:item="faq">
+                        <lightning-accordion-section
+                            key={faq.Id}
+                            name={faq.Id}
+                            label={faq.Title}>
+
+                            <div class="slds-text-body_regular">
+                                {faq.Summary}
+                            </div>
+
+                        </lightning-accordion-section>
+                    </template>
+
+                </lightning-accordion>
+            </template>
+
+            <template if:false={faqs}>
+                <p class="slds-text-color_weak">No FAQs available</p>
+            </template>
+
+        </div>
+
+    </lightning-card>
+
+</template>

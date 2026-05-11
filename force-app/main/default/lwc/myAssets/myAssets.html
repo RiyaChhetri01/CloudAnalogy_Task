@@ -1,0 +1,312 @@
+<template>
+
+    <template if:true={isLoading}>
+        <div class="spinner-container">
+            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </div>
+    </template>
+    <template if:true={hasNoAssets}>
+
+    <div class="slds-align_absolute-center slds-m-top_large">
+
+        <lightning-button
+            label="Create Asset"
+            variant="brand"
+            onclick={handleCreateAsset}>
+        </lightning-button>
+
+    </div>
+
+    </template>
+
+    <template if:false={isLoading}>
+
+        <lightning-card title="My Assets">
+
+            <lightning-tabset>
+
+                <lightning-tab label="Products">
+
+                    <template if:true={hasProducts}>
+
+                       
+                        <template if:false={isMobile}>
+                            <lightning-datatable
+                                key-field="Id"
+                                data={products}
+                                columns={productColumns}
+                                onrowaction={handleRowAction}
+                                hide-checkbox-column>
+                            </lightning-datatable>
+                        </template>
+
+                   
+                        <template if:true={isMobile}>
+                            <div class="mobile-list">
+
+                                <template for:each={products} for:item="item">
+                                    <div class="asset-card" key={item.Id}>
+
+                                        <div class="top-row">
+                                            <strong>{item.Name}</strong>
+                                            <span class="status-badge">{item.customStatus}</span>
+                                        </div>
+
+                                        <div class="meta">
+                                            Warranty: {item.Warranty_End_Date__c}
+                                        </div>
+
+                                        <div class="btn-group">
+                                            <lightning-button class="case-btn full-btn"
+                                                data-id={item.Id}
+                                                onclick={handleCreateCase}
+                                                variant="brand"
+                                                disabled={item.isCreateCaseDisabled}
+                                                label="Create Case">
+                                            </lightning-button>
+
+                                            <lightning-button class="action-btn full-btn"
+                                                data-id={item.Id}
+                                                onclick={handleRenew}
+                                                variant="brand"
+                                                disabled={item.isRenewDisabled}
+                                                label="Extend Warranty">
+                                            </lightning-button>
+                                            
+                                        </div>
+
+                                    </div>
+                                </template>
+
+                            </div>
+                        </template>
+
+                    </template>
+
+                    <template if:false={isLoading}>
+                            <template if:false={hasProducts}>
+                             <p class="slds-p-around_medium">Data not found</p>
+                     </template>
+                    </template>
+                </lightning-tab>
+
+
+    
+                <lightning-tab label="Services">
+
+                    <template if:true={hasServices}>
+
+                    
+                        <template if:false={isMobile}>
+                            <lightning-datatable
+                                key-field="Id"
+                                data={services}
+                                columns={serviceColumns}
+                                onrowaction={handleRowAction}
+                                hide-checkbox-column>
+                            </lightning-datatable>
+                        </template>
+
+                    
+                        <template if:true={isMobile}>
+                            <div class="mobile-list">
+
+                                <template for:each={services} for:item="item">
+                                    <div class="asset-card" key={item.Id}>
+
+                                        <div class="top-row">
+                                            <strong>{item.Name}</strong>
+                                            <span class="status-badge">{item.customStatus}</span>
+                                        </div>
+
+                                        <div class="meta">
+                                            Warranty: {item.Warranty_End_Date__c}
+                                        </div>
+
+                                        <div class="btn-group">
+                                            <lightning-button class="case-btn full-btn"
+                                                data-id={item.Id}
+                                                onclick={handleCreateCase}
+                                                variant="brand"
+                                                disabled={item.isCreateCaseDisabled}
+                                                label="Create Case">
+                                            </lightning-button>
+
+                                            <lightning-button class="action-btn full-btn"
+                                                data-id={item.Id}
+                                                onclick={handleRenew}
+                                                variant="brand"
+                                                disabled={item.isRenewDisabled}
+                                                label="Renew Service">
+                                            </lightning-button>
+                                        </div>
+
+                                    </div>
+                                </template>
+
+                            </div>
+                        </template>
+
+                    </template>
+
+                    <template if:false={hasServices}>
+                        <p class="slds-p-around_medium">Data not found</p>
+                    </template>
+
+                </lightning-tab>
+
+            </lightning-tabset>
+
+        </lightning-card>
+
+    </template>
+
+
+  
+    <template if:true={showWarrantyModal}>
+        <section class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+
+                <header class="slds-modal__header">
+                    <h2 class="slds-text-heading_medium">Extend Date</h2>
+                </header>
+
+                <div class="slds-modal__content slds-p-around_medium">
+
+                    <lightning-combobox
+                        label="Extend Warranty"
+                        value={selectedPlanValue}
+                        options={planOptions}
+                        onchange={handleDurationChange}>
+                    </lightning-combobox>
+
+                    <template if:true={selectedPlan}>
+                        <div class="slds-m-top_medium plan-box">
+
+                            <p>
+                                <b>Valid Till:</b>
+                                <span class="slds-text-color_success">
+                                    {calculatePlan}
+                                </span>
+                            </p>
+
+                            <p><b>Plan:</b> {selectedPlan.label}</p>
+                            <p><b>Price:</b> ₹{selectedPlan.price}</p>
+                            <p><b>Duration:</b> {selectedPlan.value} months</p>
+
+                        </div>
+                    </template>
+
+                </div>
+
+                <footer class="slds-modal__footer">
+                    <lightning-button label="Cancel" onclick={closeWarrantyModal}></lightning-button>
+                    <lightning-button label="Save" variant="brand" onclick={saveWarranty}></lightning-button>
+                </footer>
+
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+
+    <template if:true={showCaseModal}>
+        <section class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+
+                <header class="slds-modal__header">
+                    <h2 class="slds-text-heading_medium">Create Case</h2>
+                </header>
+
+                <div class="slds-modal__content slds-p-around_medium">
+
+                    <lightning-input
+                        label="Subject"
+                        value={caseSubject}
+                        onchange={handleSubjectChange}>
+                    </lightning-input>
+
+                    <lightning-combobox
+                        label="Status"
+                        value={caseStatus}
+                        options={statusOptions}
+                        onchange={handleStatusChange}>
+                    </lightning-combobox>
+
+                    <lightning-textarea
+                        label="Description"
+                        value={caseDescription}
+                        onchange={handleDescriptionChange}>
+                    </lightning-textarea>
+
+                </div>
+
+                <footer class="slds-modal__footer">
+                    <lightning-button label="Cancel" onclick={closeCaseModal}></lightning-button>
+
+                    <lightning-button
+                        label="Create Case"
+                        variant="brand"
+                        onclick={saveCase}
+                        disabled={isSaveDisabled}>
+                    </lightning-button>
+                </footer>
+
+            </div>
+        </section>
+
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+
+    
+    <template if:true={showSuccessModal}>
+        <section class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container success-modal">
+
+                <header class="slds-modal__header success-header">
+
+                    <lightning-icon
+                        icon-name="utility:success"
+                        size="large"
+                        variant="success">
+                    </lightning-icon>
+
+                    <h2 class="slds-text-heading_medium">
+                        Case Created Successfully
+                    </h2>
+
+                </header>
+
+                <div class="slds-modal__content slds-p-around_medium success-body">
+
+                    <p class="case-number">
+                        Case Number:
+                        <strong>{createdCaseNumber}</strong>
+                    </p>
+
+                </div>
+
+                <footer class="slds-modal__footer success-footer">
+
+                    <lightning-button
+                        label="Close"
+                        onclick={closeSuccessModal}>
+                    </lightning-button>
+
+                    <lightning-button
+                        variant="brand"
+                        label="View My Cases"
+                        class="slds-m-left_small"
+                        onclick={goToCases}>
+                    </lightning-button>
+
+                </footer>
+
+            </div>
+        </section>
+
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+</template>
